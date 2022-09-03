@@ -36,30 +36,25 @@ const displayPost = updates => {
     const updateNewsContainer = document.getElementById('new-news');
     updateNewsContainer.textContent = ``;
     updates.forEach(newNews => {
-        // console.log(newNews);
+        console.log(newNews);
         const newNewsDiv = document.createElement('div');
-
         newNewsDiv.innerHTML = `
-
         <div class="card card-side bg-base-100 shadow-xl mb-2.5">
-                    <figure><img src="${newNews.thumbnail_url}" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">The best fashion influencers to follow for sartorial inspiration</h2>
-                        <p>Click the button to watch on Jetflix app.</p>
-
-                        <div class="flex avatar">
-                            <div class="w-10 rounded-full">
-                                <img src="${newNews.image_url}"/>
-                            </div>
-                            <p class="text-xl font-black ml-2">${newNews.author.name}jon</p>
-                            <p class="font-black">${newNews.total_view ? newNews.total_view : 'no Viwe founded'
-            }M</p >
-                            <button class="btn btn-outline">Button</button>
-                        </div >
-                    </div >
-                </div >
-
-    `;
+        <figure><img src="${newNews.thumbnail_url}" /></figure>
+        <div class="card-body">
+        <h2 class="card-title">The best fashion influencers to follow for sartorial inspiration</h2>
+        <p>Click the button to watch on Jetflix app.</p>
+        <div class="flex avatar">
+        <div class="w-10" rounded-full">
+        <img src="${newNews.image_url}"/>
+        </div>
+        <p class="text-xl font-black ml-2">${newNews.author.name}jon</p>
+        <p class="font-black">${newNews.total_view ? newNews.total_view : 'no Viwe founded'}M</p>
+        <button class="btn btn-outline">Button</button>
+        </div >
+        </div >
+        </div >
+                `;
         updateNewsContainer.appendChild(newNewsDiv);
     });
 }
