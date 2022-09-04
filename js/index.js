@@ -34,43 +34,46 @@ const updateNews = (id) => {
 
 // dynamic cetagory button click
 const displayPost = updates => {
-    console.log(updates);
+    // console.log(updates);
 
-    // start spinner or loader
-    // toggleSpinner(true);
     const updateNewsContainer = document.getElementById('new-news');
     updateNewsContainer.textContent = ``;
-
 
     updates.forEach(newNews => {
         // console.log(newNews);
         const newNewsDiv = document.createElement('div');
+        const details = newNews.details;
         newNewsDiv.innerHTML = `
+        
         <div class="card card-side bg-base-100 shadow-xl mb-2.5">
                     <img src="${newNews.thumbnail_url}"/>
                 <div class="card-body">
                     <h2 class="card-title font-bold text-2xl">${newNews.title}</h2>
-                    <P>${newNews.details.slice(0, 700)}</p>
+                    <P>${details.length > 500 ? details.slice(0, 500) + '...' : details}</p>
+
                     <div class="flex avatar">
                 <div class="w-10" rounded-full">
                     <img class="w-10 rounded-full" src="${newNews.image_url}"/>
                 </div>
                     <p class="font-black ml-2">${newNews.author.name}</p>
                     <p class="font-black"><i class="fa-regular fa-eye"></i> ${newNews.total_view ? newNews.total_view : 'No Viwe founded'}M</p>
-                    <button type="button" data-modal-toggle="defaultModal"><i class="text-xl font-bold fa-sharp fa-solid fa-arrow-right"></i></button>
-
-                    <button
-                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                        Toggle modal
-                    </button>
+                    <label for="my-modal" onclick="showModal('${newNews._id}')" class="btn modal-button">Details</label>
                 </div >
             </div >
         </div >
                 `;
         updateNewsContainer.appendChild(newNewsDiv);
-
     });
+    document.getElementById('dynamic-num').innerText = updates.length ? updates.length : 'No news founded'
+}
+
+const modalDisplay = (views) => {
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+    <figure><img class="object-cover h-80 w-96" src="${views.thumbnail_url}" /></figure>
+    <h2 class="card-title">${views.title}</h2>
+    <p>publich-date : ${views.author.published_date ? views.author.published_date : 'no published date'}</p>
+    `;
 }
 
 setAllmenu();
