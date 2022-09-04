@@ -69,13 +69,16 @@ const displayPost = updates => {
 
     document.getElementById('dynamic-num').innerText = updates.length ? updates.length : 'No news founded'
 }
+
 const showModal = (id) => {
-    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+
+    const url = `https://openapi.progra76mming-hero.com/api/news/${id}`;
     fetch(url)
         .then((res) => res.json())
         .then((data) => modalDisplay(data.data[0]));
 }
 const modalDisplay = (viws) => {
+    // console.log(viws);
     const showModal = document.getElementById('modal-body');
     showModal.innerHTML = `
     <figure><img class="object-cover h-80 w-96" src="${viws.thumbnail_url}"></figure>
